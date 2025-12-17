@@ -1,4 +1,3 @@
-// src/App.jsx
 import React, { useState, useMemo } from "react";
 
 export default function App() {
@@ -13,7 +12,6 @@ export default function App() {
   const [approvalId, setApprovalId] = useState(null);
   const [hasApproved, setHasApproved] = useState(false);
 
-  // Example regions and checks – adjust to match your original file
   const regions = [
     { id: "eu", name: "European Union" },
     { id: "uk", name: "United Kingdom" },
@@ -26,7 +24,6 @@ export default function App() {
     [config.region]
   );
 
-  // Dummy check counts – wire this to your real logic if you had it
   const passedCount = 18;
   const failedCount = 2;
   const totalChecks = passedCount + failedCount;
@@ -61,7 +58,7 @@ export default function App() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 p-8">
-          {/* LEFT COLUMN – CONFIGURATION & SCANNING */}
+          {/* LEFT COLUMN */}
           <div className="space-y-6">
             {/* Deployment Configuration */}
             <section className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 space-y-4">
@@ -201,7 +198,7 @@ export default function App() {
             </section>
           </div>
 
-          {/* RIGHT COLUMN – CHECKS & APPROVAL */}
+          {/* RIGHT COLUMN */}
           <div className="space-y-6">
             {/* Checks */}
             <section className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 space-y-4">
@@ -212,7 +209,6 @@ export default function App() {
                 Automated rulebooks validating your deployment configuration.
               </p>
 
-              {/* Example placeholder checks – replace with your real JSX if you had it */}
               <ul className="space-y-2 text-sm text-slate-200">
                 <li>• API schema and endpoint coverage</li>
                 <li>• Transaction monitoring thresholds</li>
@@ -230,7 +226,7 @@ export default function App() {
               </div>
             </section>
 
-            {/* Review Results & Approval */}
+            {/* Review Results */}
             <section className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 space-y-4">
               <h2 className="text-lg font-semibold text-white">
                 Review Results
@@ -239,7 +235,6 @@ export default function App() {
                 Human approval required before deployment.
               </p>
 
-              {/* Stats */}
               <div className="grid grid-cols-3 gap-3 text-center text-sm">
                 <div className="bg-slate-950/60 rounded-xl p-3 border border-slate-800">
                   <p className="text-xs text-slate-400">Passed</p>
@@ -261,7 +256,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Approver details */}
               <div className="space-y-2 pt-2">
                 <label className="text-sm font-medium text-slate-200">
                   Approver name
@@ -272,55 +266,3 @@ export default function App() {
                   onChange={(e) =>
                     setConfig({ ...config, approverName: e.target.value })
                   }
-                  placeholder="e.g., Maria Jensen"
-                  className="w-full bg-slate-950/70 border border-slate-700 rounded-xl px-3 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-                />
-              </div>
-
-              <div className="text-xs text-slate-400 bg-slate-950/60 border border-slate-800 rounded-xl p-3">
-                <p className="font-medium text-slate-200 mb-1">
-                  Human Approval Required
-                </p>
-                <p>
-                  By approving, <strong>{config.approverName || "________"}</strong>{" "}
-                  confirms they have reviewed the compliance results and
-                  authorise this deployment to {config.deploymentType}.
-                </p>
-              </div>
-
-              <button
-                onClick={handleApprove}
-                disabled={!config.approverName}
-                className="w-full mt-2 inline-flex items-center justify-center rounded-xl px-4 py-2.5 text-sm font-medium text-slate-950 bg-emerald-400 hover:bg-emerald-300 disabled:bg-slate-700 disabled:text-slate-400 transition-colors"
-              >
-                Approve deployment
-              </button>
-            </section>
-
-            {/* Approval Summary */}
-            {hasApproved && (
-              <section className="bg-emerald-500/10 border border-emerald-500/40 rounded-2xl p-6 space-y-3">
-                <h2 className="text-lg font-semibold text-emerald-300">
-                  Deployment Approved
-                </h2>
-                <p className="text-sm text-emerald-100">
-                  {config.projectName || "Your project"} has been approved for{" "}
-                  {config.deploymentType} deployment in {selectedRegion?.name}.
-                </p>
-                <p className="text-xs text-emerald-100">
-                  <span className="font-medium">Approval ID:</span>{" "}
-                  {approvalId}
-                </p>
-                <p className="text-xs text-emerald-100">
-                  Audit Trail Created. This approval has been logged with full
-                  evidence trail. Approved by {config.approverName} on{" "}
-                  {new Date().toLocaleDateString()}.
-                </p>
-              </section>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
